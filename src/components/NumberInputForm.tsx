@@ -15,6 +15,7 @@ export default function NumberInputForm({
       <p className="w-full text-sm font-semibold sm:w-1/2">{label}</p>
       <NumberInput
         radius="none"
+        aria-label={`${label}-input`}
         value={value}
         onValueChange={handleValueChange}
         color="primary"

@@ -141,7 +141,7 @@ export default function PricingPage() {
           handleSelectionChange={handleTerracottaChange}
         />
         <div className="flex justify-between">
-          <Image src={TerracottaImage} width="50%" />
+          <Image src={TerracottaImage} width="50%" alt="Terracotta roof" />
           <span />
         </div>
       </Accordion>
