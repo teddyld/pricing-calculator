@@ -21,7 +21,6 @@ export default function SelectForm({
         radius="none"
         selectedKeys={[value]}
         onChange={handleSelectionChange}
-        size="sm"
         variant="faded"
         color="primary"
       >

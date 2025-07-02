@@ -12,7 +12,6 @@ export default function Accordion({
     <div className="w-full px-2">
       <AccordionUI
         variant="bordered"
-        isCompact
         itemClasses={{
           title: "text-sm",
           content: "text-sm",

@@ -20,7 +20,6 @@ export default function NumberInputForm({
         color="primary"
         variant="faded"
         classNames={{
-          inputWrapper: "h-2",
           input: "text-right",
         }}
         hideStepper
