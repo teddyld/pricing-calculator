@@ -17,6 +17,8 @@ import {
 import { Image } from "@heroui/react";
 import TerracottaImage from "../assets/terracotta.png";
 
+import { Divider } from "@heroui/react";
+
 export default function PricingPage() {
   const {
     specifications,
@@ -97,11 +99,14 @@ export default function PricingPage() {
           handleSelectionChange={handleRemoval}
         />
         {requiresRemoval && (
-          <NumberInputForm
-            label="How many"
-            value={specifications["panel_removal"]}
-            handleValueChange={handlePanelRemovalChange}
-          />
+          <>
+            <Divider />
+            <NumberInputForm
+              label="How many"
+              value={specifications["panel_removal"]}
+              handleValueChange={handlePanelRemovalChange}
+            />
+          </>
         )}
       </Accordion>
       <Accordion title="Optimisers?">
@@ -112,11 +117,14 @@ export default function PricingPage() {
           handleSelectionChange={handleOptimisers}
         />
         {requiresOptimiser && (
-          <NumberInputForm
-            label="How many"
-            value={specifications["optimisers"]}
-            handleValueChange={handleOptimisersChange}
-          />
+          <>
+            <Divider />
+            <NumberInputForm
+              label="How many"
+              value={specifications["optimisers"]}
+              handleValueChange={handleOptimisersChange}
+            />
+          </>
         )}
       </Accordion>
       <Accordion title="Others">
