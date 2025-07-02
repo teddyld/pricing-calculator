@@ -15,7 +15,7 @@ export default function SelectForm({
 }) {
   return (
     <div className="flex w-full flex-col justify-between gap-2 sm:flex-row sm:items-center">
-      <p className="w-full text-sm font-semibold sm:w-1/2">{label}</p>
+      <p className="w-full font-semibold sm:w-1/2">{label}</p>
       <Select
         placeholder="No option selected"
         radius="none"
