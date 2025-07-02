@@ -3,6 +3,8 @@ import Container from "../layout/Container";
 import SelectForm from "../components/SelectForm";
 import Accordion from "../components/Accordion";
 
+import { Divider } from "@heroui/react";
+
 import { batteryBrands, selection } from "../utils/pricingModel";
 import { useBatterySpecifications } from "../hooks/useBatterySpecifications";
 
@@ -30,9 +32,7 @@ export default function BatteryPage() {
           value={specifications["blackout_protection"]}
           handleSelectionChange={handleBlackoutProtectionChange}
         />
-        <div
-          className={`flex flex-col rounded-sm ${specifications["retrofit"] === "Yes" ? "bg-black/10" : ""} `}
-        >
+        <div className={`flex flex-col gap-4 rounded-sm`}>
           <SelectForm
             label="Retrofit"
             items={selection}
@@ -40,12 +40,15 @@ export default function BatteryPage() {
             handleSelectionChange={handleRetrofitChange}
           />
           {specifications["retrofit"] === "Yes" && (
-            <SelectForm
-              label="Three Phase"
-              items={selection}
-              value={specifications["three_phase"]}
-              handleSelectionChange={handleThreePhaseChange}
-            />
+            <>
+              <Divider />
+              <SelectForm
+                label="Three Phase"
+                items={selection}
+                value={specifications["three_phase"]}
+                handleSelectionChange={handleThreePhaseChange}
+              />
+            </>
           )}
         </div>
       </Container>
