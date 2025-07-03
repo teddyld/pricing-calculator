@@ -21,7 +21,7 @@ export default function Solar({
   specifications,
   handleChange,
   error,
-  isSungrow,
+  isSolarOnly,
 }: {
   specifications: SolarPricingModel;
   handleChange: (
@@ -29,7 +29,7 @@ export default function Solar({
     value: ItemPrice | number,
   ) => void;
   error: SolarError;
-  isSungrow?: boolean;
+  isSolarOnly?: boolean;
 }) {
   return (
     <>
@@ -42,7 +42,10 @@ export default function Solar({
           }
           endContent={
             <p className="text-nowrap text-sm">
-              W <span className="opacity-50">(+$1.062/W)</span>
+              W{" "}
+              <span className="opacity-50">
+                {isSolarOnly ? "(+$1.062/W)" : "(+$0.712/W)"}
+              </span>
             </p>
           }
         />
@@ -67,8 +70,8 @@ export default function Solar({
           isPerWatt
         />
         <SelectForm
-          label={`${isSungrow ? "Sungrow Inverter" : "Inverter"}`}
-          items={isSungrow ? sungrow_inverters : inverters}
+          label={`${isSolarOnly ? "Sungrow Inverter" : "Inverter"}`}
+          items={isSolarOnly ? sungrow_inverters : inverters}
           value={specifications["inverter"].name}
           handleSelectionChange={(value: ItemPrice) =>
             handleChange("inverter", value)

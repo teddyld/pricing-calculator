@@ -9,7 +9,7 @@ import {
 } from "../utils/pricingData";
 import { calculateSolar } from "../utils/calculatePrice";
 
-export const usePricingSpecifications = (isSolarOnly: boolean) => {
+export const useSolarSpecifications = (isSolarOnly: boolean) => {
   const localStorageKey = isSolarOnly ? "solar" : "solarandbattery";
 
   const [specifications, setSpecifications] =
@@ -49,7 +49,7 @@ export const usePricingSpecifications = (isSolarOnly: boolean) => {
       return;
     }
 
-    const newCost = calculateSolar(specifications);
+    const newCost = calculateSolar(specifications, isSolarOnly);
     setCost({ ...newCost });
   }, [specifications]);
 

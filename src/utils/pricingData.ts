@@ -1,6 +1,7 @@
 export const SOLAR_REBATE = 0.312;
 export const BATTERY_REBATE = 0.37;
 export const SYSTEM_SIZE_MULTIPLIER = 1.062;
+export const SYSTEM_SIZE_MULTIPLIER_SOLAR_AND_BATTERY = 0.712;
 
 export type ItemPrice = {
   name: string;
@@ -57,7 +58,7 @@ export const battery_brands: ItemPrice[] = [
 ];
 
 export const terracotta_tile: ItemPrice[] = [
-  { name: "Yes", price: 0.4 },
+  { name: "Yes", price: 0.04 },
   { name: "No", price: 0 },
 ];
 

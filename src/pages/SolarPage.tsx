@@ -4,7 +4,7 @@ import Solar from "../components/Solar";
 import SolarCost from "../components/SolarCost";
 import ResetButton from "../components/ResetButton";
 
-import { usePricingSpecifications } from "../hooks/usePricingSpecifications";
+import { useSolarSpecifications } from "../hooks/useSolarSpecifications";
 
 import { Divider } from "@heroui/react";
 
@@ -15,7 +15,7 @@ export default function SolarPage() {
     solarCost,
     solarError,
     resetSolar,
-  } = usePricingSpecifications(true);
+  } = useSolarSpecifications(true);
 
   return (
     <Layout>
@@ -23,7 +23,7 @@ export default function SolarPage() {
         specifications={solarSpecifications}
         handleChange={handleSolarChange}
         error={solarError}
-        isSungrow
+        isSolarOnly
       />
       <Divider />
       <Accordion title="COST BREAKDOWN">

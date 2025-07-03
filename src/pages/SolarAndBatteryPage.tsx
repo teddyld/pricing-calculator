@@ -6,7 +6,7 @@ import SolarCost from "../components/SolarCost";
 import BatteryCost from "../components/BatteryCost";
 import ResetButton from "../components/ResetButton";
 
-import { usePricingSpecifications } from "../hooks/usePricingSpecifications";
+import { useSolarSpecifications } from "../hooks/useSolarSpecifications";
 import { useBatterySpecifications } from "../hooks/useBatterySpecifications";
 
 import { Divider } from "@heroui/react";
@@ -18,7 +18,7 @@ export default function SolarAndBatteryPage() {
     solarCost,
     solarError,
     resetSolar,
-  } = usePricingSpecifications(false);
+  } = useSolarSpecifications(false);
   const {
     batterySpecifications,
     handleBatteryChange,

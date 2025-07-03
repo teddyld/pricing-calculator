@@ -5,6 +5,7 @@ import {
   SOLAR_REBATE,
   SYSTEM_SIZE_MULTIPLIER,
   BATTERY_REBATE,
+  SYSTEM_SIZE_MULTIPLIER_SOLAR_AND_BATTERY,
 } from "./pricingData";
 
 // Round to 2 decimal places
@@ -14,10 +15,16 @@ const formatPrice = (value: number) => {
 
 export const calculateSolar = (
   specifications: SolarPricingModel,
+  isSolarOnly: boolean,
 ): PricingOutput => {
   let before_stc = 0;
   //  System size
-  before_stc += specifications["system_size"] * SYSTEM_SIZE_MULTIPLIER;
+  if (isSolarOnly) {
+    before_stc += specifications["system_size"] * SYSTEM_SIZE_MULTIPLIER;
+  } else {
+    before_stc +=
+      specifications["system_size"] * SYSTEM_SIZE_MULTIPLIER_SOLAR_AND_BATTERY;
+  }
   // Panel type
   before_stc +=
     specifications["panel_type"].price * specifications["system_size"];
