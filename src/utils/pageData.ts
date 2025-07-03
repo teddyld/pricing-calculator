@@ -4,6 +4,7 @@ type PageType = {
 };
 
 export const pageData: PageType[] = [
-  { name: "Pricing", path: "/" },
-  { name: "Battery", path: "/battery" },
+  { name: "Solar Only", path: "/" },
+  { name: "Battery Only", path: "/battery" },
+  { name: "Solar and Battery", path: "/solar_and_battery" },
 ];

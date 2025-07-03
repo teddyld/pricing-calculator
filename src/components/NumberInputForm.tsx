@@ -20,6 +20,7 @@ export default function NumberInputForm({
         onValueChange={handleValueChange}
         color="primary"
         variant="faded"
+        size="sm"
         classNames={{
           input: "text-right",
         }}

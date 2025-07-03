@@ -1,80 +1,81 @@
 import React from "react";
-import { type PricingModel, pricingDefault } from "../utils/pricingModel";
 
-export const usePricingSpecifications = () => {
+import {
+  pricing_default,
+  type SolarPricingModel,
+  type PricingOutput,
+  type SolarError,
+  type ItemPrice,
+} from "../utils/pricingData";
+import { calculateSolar } from "../utils/calculatePrice";
+
+export const usePricingSpecifications = (isSolarOnly: boolean) => {
+  const localStorageKey = isSolarOnly ? "solar" : "solarandbattery";
+
   const [specifications, setSpecifications] =
-    React.useState<PricingModel>(pricingDefault);
+    React.useState<SolarPricingModel>(pricing_default);
+  const [cost, setCost] = React.useState<PricingOutput>({
+    before_stc: 0,
+    stc: 0,
+    after_stc: 0,
+  });
+  const [error, setError] = React.useState<SolarError>({
+    panel_type: false,
+    inverter: false,
+    message: "",
+  });
 
-  const handleSystemSizeChange = (value: number) => {
-    setSpecifications({ ...specifications, system_size: value });
-  };
+  // Load specifications from localstorage
+  React.useEffect(() => {
+    const storedValue = localStorage.getItem(localStorageKey);
+    if (storedValue) {
+      const storedSpecifications = JSON.parse(storedValue);
+      setSpecifications({ ...storedSpecifications });
+    }
+  }, []);
 
-  const handlePostcodeChange = (value: number) => {
-    if (String(value).length > 4) return;
-    setSpecifications({ ...specifications, postcode: value });
-  };
+  // Calculate cost
+  React.useEffect(() => {
+    setError({ panel_type: false, inverter: false, message: "" });
+    if (
+      !specifications["panel_type"].name ||
+      !specifications["inverter"].name
+    ) {
+      setError({
+        panel_type: !specifications["panel_type"].name ? true : false,
+        inverter: !specifications["inverter"].name ? true : false,
+        message: "Invalid panel type or inverter",
+      });
+      return;
+    }
 
-  const handleSTCChange = (value: number) => {
-    setSpecifications({ ...specifications, stc: value });
-  };
+    const newCost = calculateSolar(specifications);
+    setCost({ ...newCost });
+  }, [specifications]);
 
-  const handlePanelTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSpecifications({
-      ...specifications,
-      panel_type: e.target.value as PricingModel["panel_type"],
-    });
-  };
-
-  const handleSungrowInverterChange = (
-    e: React.ChangeEvent<HTMLSelectElement>,
+  const handleChange = (
+    target: keyof SolarPricingModel,
+    value: ItemPrice | number,
   ) => {
-    setSpecifications({
+    const newSpecifications = {
       ...specifications,
-      sungrow_inverter: e.target.value as PricingModel["sungrow_inverter"],
-    });
+      [target]: value,
+    };
+
+    localStorage.setItem(localStorageKey, JSON.stringify(newSpecifications));
+    setSpecifications({ ...newSpecifications });
   };
 
-  const handlePanelRemovalChange = (value: number) => {
-    setSpecifications({ ...specifications, panel_removal: value });
-  };
-
-  const handleOptimisersChange = (value: number) => {
-    setSpecifications({ ...specifications, optimisers: value });
-  };
-
-  const handleStoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSpecifications({
-      ...specifications,
-      story_house: e.target.value as PricingModel["story_house"],
-    });
-  };
-
-  const handleThreePhaseChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSpecifications({
-      ...specifications,
-      three_phase: e.target.value as PricingModel["three_phase"],
-    });
-  };
-
-  const handleTerracottaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSpecifications({
-      ...specifications,
-      terracotta_tile_roof: e.target
-        .value as PricingModel["terracotta_tile_roof"],
-    });
+  const resetDefaults = () => {
+    localStorage.setItem(localStorageKey, JSON.stringify(pricing_default));
+    setSpecifications({ ...pricing_default });
   };
 
   return {
-    specifications,
-    handleSystemSizeChange,
-    handlePostcodeChange,
-    handleSTCChange,
-    handlePanelTypeChange,
-    handleSungrowInverterChange,
-    handlePanelRemovalChange,
-    handleOptimisersChange,
-    handleStoryChange,
-    handleThreePhaseChange,
-    handleTerracottaChange,
+    solarSpecifications: specifications,
+    handleSolarChange: handleChange,
+    solarCost: cost,
+    solarError: error,
+    resetSolar: resetDefaults,
   };
 };

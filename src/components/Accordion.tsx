@@ -11,8 +11,13 @@ export default function Accordion({
   return (
     <div className="w-full px-2">
       <AccordionUI variant="bordered">
-        <AccordionItem key={title} aria-label={title} title={title}>
-          <div className="flex flex-col gap-4 py-4">{children}</div>
+        <AccordionItem
+          key={title}
+          aria-label={title}
+          title={title}
+          classNames={{ content: "pb-4" }}
+        >
+          {children}
         </AccordionItem>
       </AccordionUI>
     </div>

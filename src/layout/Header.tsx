@@ -50,8 +50,12 @@ export default function Header() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <img src={LuxLogo} className="h-8 w-8 sm:hidden" />
-          <img src={LuxLogoText} className="hidden w-32 sm:flex" />
+          <img src={LuxLogo} className="h-8 w-8 sm:hidden" alt="Lux logo" />
+          <img
+            src={LuxLogoText}
+            className="hidden w-32 sm:flex"
+            alt="Lux logo"
+          />
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent className="hidden gap-4 sm:flex" justify="center">
