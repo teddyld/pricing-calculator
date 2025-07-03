@@ -104,7 +104,6 @@ export const optimisers: ItemPrice[] = [
 
 export type SolarPricingModel = {
   system_size: number;
-  postcode: number | undefined;
   panel_type: ItemPrice;
   inverter: ItemPrice;
   panel_removal: ItemPrice;
@@ -116,7 +115,6 @@ export type SolarPricingModel = {
 
 export const pricing_default: SolarPricingModel = {
   system_size: 0,
-  postcode: undefined,
   panel_type: { name: "", price: 0 },
   inverter: { name: "", price: 0 },
   panel_removal: { name: "No", price: 0 },

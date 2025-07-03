@@ -49,16 +49,6 @@ export default function Solar({
             </p>
           }
         />
-        <NumberInputForm
-          label="Post Code"
-          value={specifications["postcode"]}
-          handleValueChange={(value: number) => handleChange("postcode", value)}
-          formatOptions={{
-            minimumIntegerDigits: 4,
-            useGrouping: false,
-          }}
-          className="sm:w-1/4"
-        />
         <SelectForm
           label="Panel Type"
           items={panels}
