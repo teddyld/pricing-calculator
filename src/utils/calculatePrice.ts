@@ -36,7 +36,7 @@ export const calculateSolar = (
     specifications["terracotta_tile"].price * specifications["system_size"];
 
   const stc = specifications["system_size"] * SOLAR_REBATE;
-  const after_stc = (before_stc - stc) * 1.1;
+  const after_stc = before_stc - stc;
 
   return {
     before_stc: formatPrice(before_stc),
@@ -59,7 +59,7 @@ export const calculateBattery = (
   const stc = specifications["battery_brand"].watts
     ? specifications["battery_brand"].watts * BATTERY_REBATE
     : 0;
-  const after_stc = (before_stc - stc) * 1.1;
+  const after_stc = before_stc - stc;
 
   return {
     before_stc: formatPrice(before_stc),
