@@ -50,6 +50,24 @@ export default function SolarAndBatteryPage() {
             <p className="font-bold">Battery</p>
             <BatteryCost cost={batteryCost} error={batteryError} />
           </div>
+          {!batteryError.brand &&
+          !solarError.inverter &&
+          !solarError.panel_type ? (
+            <div>
+              <p className="font-bold">Total</p>
+              <p>
+                Total Cost Before STC = $
+                {solarCost.before_stc + batteryCost.before_stc}
+              </p>
+              <p>Total STC = ${solarCost.stc + batteryCost.stc}</p>
+              <p>
+                Total Cost After STC (Inc GST) = $
+                {solarCost.after_stc + batteryCost.after_stc}
+              </p>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </Accordion>
       <ResetButton

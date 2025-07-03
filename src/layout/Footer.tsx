@@ -6,7 +6,7 @@ export default function Footer() {
       <Divider />
       <div className="flex flex-col flex-nowrap items-center justify-center gap-2 p-4 sm:flex-col">
         <p className="font-semibold">Contact Us:</p>
-        <div className="flex flex-col flex-wrap items-center gap-2 sm:flex-row sm:gap-4">
+        <div className="flex flex-col flex-wrap items-center sm:flex-row sm:gap-4">
           <Link isExternal href="tel:+61426989789" color="foreground">
             +61 426 989 789
           </Link>
