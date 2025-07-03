@@ -61,8 +61,6 @@ export const calculateBattery = (
     : 0;
   const after_stc = (before_stc - stc) * 1.1;
 
-  console.log();
-
   return {
     before_stc: formatPrice(before_stc),
     stc: formatPrice(stc),
