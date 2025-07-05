@@ -43,13 +43,11 @@ export default function Solar({
             handleChange("system_size", value)
           }
           endContent={
-            <p className="text-nowrap text-sm">
+            <p>
               W{" "}
-              <span className="opacity-50">
-                {isSolarOnly
-                  ? `(+$${SYSTEM_SIZE_MULTIPLIER}/W)`
-                  : `(+$${SYSTEM_SIZE_MULTIPLIER_SOLAR_AND_BATTERY}/W)`}
-              </span>
+              {isSolarOnly
+                ? `(+$${SYSTEM_SIZE_MULTIPLIER}/W)`
+                : `(+$${SYSTEM_SIZE_MULTIPLIER_SOLAR_AND_BATTERY}/W)`}
             </p>
           }
         />
@@ -85,7 +83,7 @@ export default function Solar({
       </Accordion>
       <Accordion title="OPTIMISERS">
         <SelectForm
-          label="Optimisers"
+          label="How many"
           items={optimisers}
           value={specifications["optimisers"].name}
           handleSelectionChange={(value: ItemPrice) =>

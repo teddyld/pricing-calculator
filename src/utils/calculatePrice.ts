@@ -1,16 +1,25 @@
 import {
   type SolarPricingModel,
   type BatteryPricingModel,
+  type ElectricalPricingModel,
   type PricingOutput,
+  type ElectricalPricingOutput,
   SOLAR_REBATE,
   SYSTEM_SIZE_MULTIPLIER,
   BATTERY_REBATE,
   SYSTEM_SIZE_MULTIPLIER_SOLAR_AND_BATTERY,
+  ELECTRICAL_PRICES,
+  CASH_DISCOUNT,
+  electrical_default,
 } from "./pricingData";
 
 // Round to 2 decimal places
 const formatPrice = (value: number) => {
   return Number((Math.round(value * 100) / 100).toFixed(2));
+};
+
+export const applyDiscount = (value: number, discount: number) => {
+  return formatPrice(value - value * (discount / 100));
 };
 
 export const calculateSolar = (
@@ -72,5 +81,28 @@ export const calculateBattery = (
     before_stc: formatPrice(before_stc),
     stc: formatPrice(stc),
     after_stc: formatPrice(after_stc),
+  };
+};
+
+export const calculateElectrical = (
+  specifications: ElectricalPricingModel,
+): ElectricalPricingOutput => {
+  let invoice = 0;
+
+  for (const item of Object.keys(electrical_default)) {
+    if (typeof specifications[item] === "number") {
+      invoice +=
+        ELECTRICAL_PRICES[item as keyof typeof ELECTRICAL_PRICES] *
+        specifications[item];
+    } else {
+      invoice += specifications[item].price;
+    }
+  }
+
+  const cash = invoice - invoice * CASH_DISCOUNT;
+
+  return {
+    cash,
+    invoice,
   };
 };

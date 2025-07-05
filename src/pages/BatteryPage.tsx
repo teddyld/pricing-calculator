@@ -1,8 +1,11 @@
+import React from "react";
+
 import Layout from "../layout/Layout";
 import Accordion from "../components/Accordion";
 import Battery from "../components/Battery";
 import BatteryCost from "../components/BatteryCost";
 import ResetButton from "../components/ResetButton";
+import DiscountInput from "../components/DiscountInput";
 
 import { useBatterySpecifications } from "../hooks/useBatterySpecifications";
 
@@ -17,6 +20,8 @@ export default function BatteryPage() {
     resetBattery,
   } = useBatterySpecifications();
 
+  const [discount, setDiscount] = React.useState(0);
+
   return (
     <Layout>
       <Battery
@@ -26,7 +31,12 @@ export default function BatteryPage() {
       />
       <Divider />
       <Accordion title="Cost Breakdown">
-        <BatteryCost cost={batteryCost} error={batteryError} />
+        <BatteryCost
+          discount={discount}
+          cost={batteryCost}
+          error={batteryError}
+        />
+        <DiscountInput discount={discount} setDiscount={setDiscount} />
       </Accordion>
       <ResetButton handleOnPress={resetBattery} />
     </Layout>

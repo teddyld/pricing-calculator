@@ -1,14 +1,16 @@
 import { NumberInput, type NumberInputProps } from "@heroui/react";
+import type React from "react";
 
 export default function NumberInputForm({
   label,
   value,
   handleValueChange,
-  ...rest
+  endContent,
 }: NumberInputProps & {
   label: string;
   value: number | undefined;
   handleValueChange: (value: number) => void;
+  endContent: React.ReactNode;
 }) {
   return (
     <div className="flex w-full flex-col justify-between gap-2 sm:flex-row sm:items-center">
@@ -26,7 +28,11 @@ export default function NumberInputForm({
         }}
         hideStepper
         minValue={0}
-        {...rest}
+        endContent={
+          <span className="text-nowrap text-sm italic opacity-50">
+            {endContent}
+          </span>
+        }
       />
     </div>
   );

@@ -17,7 +17,7 @@ export default function Accordion({
           title={title}
           classNames={{ content: "pb-4" }}
         >
-          {children}
+          <div className="flex flex-col flex-nowrap gap-4">{children}</div>
         </AccordionItem>
       </AccordionUI>
     </div>
