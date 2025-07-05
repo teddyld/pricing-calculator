@@ -177,7 +177,7 @@ export type BatteryError = {
 export const CASH_DISCOUNT = 0.15; // %
 
 export const ELECTRICAL_PRICES = {
-  switchboard_upgrade_single: 15000,
+  switchboard_upgrade_single: 1500,
   switchboard_upgrade_three: 1000,
 
   powerpoint_new_gyprock: 100,
