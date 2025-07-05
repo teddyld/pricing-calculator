@@ -12,6 +12,8 @@ import {
   terracotta_tile,
   panel_removal,
   three_phase,
+  SYSTEM_SIZE_MULTIPLIER,
+  SYSTEM_SIZE_MULTIPLIER_SOLAR_AND_BATTERY,
   type SolarPricingModel,
   type SolarError,
   type ItemPrice,
@@ -44,7 +46,9 @@ export default function Solar({
             <p className="text-nowrap text-sm">
               W{" "}
               <span className="opacity-50">
-                {isSolarOnly ? "(+$1.062/W)" : "(+$0.712/W)"}
+                {isSolarOnly
+                  ? `(+$${SYSTEM_SIZE_MULTIPLIER}/W)`
+                  : `(+$${SYSTEM_SIZE_MULTIPLIER_SOLAR_AND_BATTERY}/W)`}
               </span>
             </p>
           }
