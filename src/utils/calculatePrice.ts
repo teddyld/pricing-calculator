@@ -91,9 +91,17 @@ export const calculateElectrical = (
 
   for (const item of Object.keys(electrical_default)) {
     if (typeof specifications[item] === "number") {
-      invoice +=
-        ELECTRICAL_PRICES[item as keyof typeof ELECTRICAL_PRICES] *
-        specifications[item];
+      if (item === "switch_new" || item === "switch_replace") {
+        if (specifications[item] > 0) {
+          invoice += ELECTRICAL_PRICES[item as keyof typeof ELECTRICAL_PRICES];
+        }
+
+        invoice += specifications[item] * ELECTRICAL_PRICES["switch_mech"];
+      } else {
+        invoice +=
+          ELECTRICAL_PRICES[item as keyof typeof ELECTRICAL_PRICES] *
+          specifications[item];
+      }
     } else {
       invoice += specifications[item].price;
     }

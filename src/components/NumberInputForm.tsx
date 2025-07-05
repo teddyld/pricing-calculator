@@ -19,7 +19,7 @@ export default function NumberInputForm({
         radius="none"
         aria-label={`${label}-input`}
         value={value}
-        onValueChange={handleValueChange}
+        onValueChange={(value: number) => handleValueChange(!value ? 0 : value)}
         color="primary"
         variant="faded"
         size="sm"
