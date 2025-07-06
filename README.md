@@ -1,6 +1,6 @@
 # pricing-calculator
 
-> A solar and battery pricing calculator I created for Lux Energy
+> A solar, battery, and electrical pricing calculator
 
 ## Tech Stack
 
