@@ -1,7 +1,7 @@
 export const SOLAR_REBATE = 0.312;
 export const BATTERY_REBATE = 0.37;
-export const SYSTEM_SIZE_MULTIPLIER = 1.062;
-export const SYSTEM_SIZE_MULTIPLIER_SOLAR_AND_BATTERY = 0.712;
+export const SYSTEM_SIZE_MULTIPLIER = 1.212;
+export const SYSTEM_SIZE_MULTIPLIER_SOLAR_AND_BATTERY = 0.862;
 
 export type ItemPrice = {
   name: string;
