@@ -23,8 +23,8 @@ export type PricingOutput = {
 
 // Prices per watt
 export const panels: ItemPrice[] = [
-  { name: "CANADIAN SOLAR", price: 0.04 },
-  { name: "DAS SOLAR", price: 0 },
+  { name: "PREMIUM", price: 0.04 },
+  { name: "STANDARD", price: 0 },
 ];
 
 export const sungrow_inverters: ItemPrice[] = [
@@ -50,6 +50,7 @@ export const inverters: ItemPrice[] = [
   { name: "SUNGROW 10KW THREE PHASE HYBRID", price: 500 },
   { name: "SUNGROW 10KW SINGLE PHASE HYBRID", price: 0 },
   { name: "SUNGROW 15KW THREE PHASE HYBRID", price: 500 },
+  { name: "GOODWE 10KW", price: 0 },
 ];
 
 // Price per watt
@@ -122,6 +123,8 @@ export type SolarError = {
 ===============================
 */
 
+const INCREASE_BATTERY_PRICE_PERCENTAGE = 0.06;
+
 export const battery_brands: ItemPrice[] = [
   { name: "SUNGROW BATTERY 9.6KW", price: 12552, watts: 9600 },
   { name: "SUNGROW BATTERY 12.8KW", price: 14936, watts: 12800 },
@@ -137,10 +140,19 @@ export const battery_brands: ItemPrice[] = [
   { name: "ALPHA ESS BATTERY 15KW", price: 12550, watts: 15000 },
   { name: "ALPHA ESS BATTERY 20KW", price: 15400, watts: 20000 },
   { name: "ALPHA ESS BATTERY 25KW", price: 18250, watts: 25000 },
-];
+  { name: "GOODWE 8KW", price: 8920, watts: 8000 },
+  { name: "GOODWE 16KW", price: 14408, watts: 16000 },
+  { name: "GOODWE 24KW", price: 19896, watts: 24000 },
+  { name: "GOODWE 32KW", price: 25384, watts: 32000 },
+  { name: "GOODWE 40KW", price: 30872, watts: 40000 },
+].map((item) => ({
+  ...item,
+  price: item.price + item.price * INCREASE_BATTERY_PRICE_PERCENTAGE,
+}));
 
 export const blackout_protection: ItemPrice[] = [
-  { name: "Yes", price: 1000 },
+  { name: "FULL HOME", price: 1000 },
+  { name: "PARTIAL", price: 450 },
   { name: "No", price: 0 },
 ];
 
